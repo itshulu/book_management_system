@@ -2,7 +2,6 @@ package com.sl.service.impl;
 
 import com.sl.dao.BookTypeDao;
 import com.sl.entity.BookType;
-import com.sl.entity.RestModel;
 import com.sl.service.BookTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,22 +21,23 @@ public class BookTypeServiceImpl implements BookTypeService {
     }
 
     @Override
-    public RestModel<List<BookType>> getAll() {
-        return new RestModel<>(200,"查询成功",bookTypeDao.getAll());
+    public List<BookType> getAll() {
+        return  bookTypeDao.getAll();
+    }
+
+
+    @Override
+    public void saveType(BookType bookType){
+        bookTypeDao.saveType(bookType);
     }
 
     @Override
-    public RestModel<BookType> saveType(String name) {
-        return new RestModel<>(200,"添加成功",bookTypeDao.saveType(name));
+    public void removeType(Integer id) {
+        bookTypeDao.removeType(id);
     }
 
     @Override
-    public RestModel<BookType> removeType(Integer id) {
-        return new RestModel<>(200,"删除成功",bookTypeDao.removeType(id));
-    }
-
-    @Override
-    public RestModel<BookType> modifyType(Integer id, String name) {
-        return new RestModel<>(200,"修改成功",bookTypeDao.modifyType(id,name));
+    public void modifyType(BookType bookType) {
+        bookTypeDao.modifyType(bookType);
     }
 }

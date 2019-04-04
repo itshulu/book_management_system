@@ -22,4 +22,12 @@ public class BookType {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "BookType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

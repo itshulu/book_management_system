@@ -18,14 +18,14 @@ public interface BookTypeDao {
      * 添加类别
      * @return
      */
-    BookType saveType(String name);
+    void saveType(BookType bookType);
 
     /**
      * 删除类别
      * @param id 类别 id
      * @return
      */
-    BookType removeType(Integer id);
+    void removeType(Integer id);
 
     /**
      * 修改类别名
@@ -33,5 +33,5 @@ public interface BookTypeDao {
      * @param name 新类别名
      * @return
      */
-    BookType modifyType(Integer id,String name);
+    void modifyType(BookType bookType);
 }

@@ -3,21 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sl.dao.BookTypeDao">
-    <resultMap id="TypeResult" type="booktype">
-        <id column="id" property="id" javaType="Integer" jdbcType="BIGINT"/>
-        <result property="name" column="name"/>
-    </resultMap>
+    <!--    <resultMap id="TypeResult" type="booktype">
+            <id column="id" property="id" javaType="Integer" jdbcType="BIGINT"/>
+            <result property="name" column="name"/>
+        </resultMap>-->
+
     <select id="getAll" resultType="com.sl.entity.BookType">
-SELECT * FROM book_type
+        SELECT * FROM book_type
     </select>
-    <insert id="saveType">
 
+    <insert id="saveType" parameterType="com.sl.entity.BookType" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book_type (`name`) VALUES (#{name})
     </insert>
+
     <delete id="removeType">
-
+DELETE FROM book_type WHERE id=#{id}
     </delete>
-    <update id="modifyType">
-
+    <update id="modifyType" parameterType="com.sl.entity.BookType">
+        UPDATE book_type
+        <set>
+            <if test="name != null">name=#{name}</if>
+        </set>
+        WHERE id=#{id}
     </update>
 
 

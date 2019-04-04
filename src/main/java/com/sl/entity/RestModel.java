@@ -22,7 +22,12 @@ public class RestModel<T> implements Serializable {
     public RestModel(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
-        this.data = data;
+        if (data==null){
+            this.data= (T)" ";
+        }else {
+            this.data = data;
+        }
+
     }
 
     public RestModel(T data) {
