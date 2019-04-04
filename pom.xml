@@ -109,7 +109,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>6.0.6</version>
+      <version>8.0.11</version>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -127,7 +127,17 @@
       <artifactId>persistence-api</artifactId>
       <version>1.0</version>
     </dependency>
-
+    <!-- jaskson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.5.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.5.4</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>book_management_system</finalName>
