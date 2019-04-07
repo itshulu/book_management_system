@@ -16,7 +16,7 @@ public interface BookTypeDao {
 
     /**
      * 添加类别
-     * @return
+     * @param bookType 类别对象
      */
     void saveType(BookType bookType);
 
@@ -28,10 +28,8 @@ public interface BookTypeDao {
     void removeType(Integer id);
 
     /**
-     * 修改类别名
-     * @param id 类别id
-     * @param name 新类别名
-     * @return
+     * 添加修改后的类别对象
+     * @param bookType 类别对象
      */
     void modifyType(BookType bookType);
 }

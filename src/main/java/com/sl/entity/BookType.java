@@ -1,11 +1,28 @@
 package com.sl.entity;
 
+import java.io.Serializable;
+
 /**
  * @author ShuLu
  */
-public class BookType {
+public class BookType implements Serializable {
+    /**
+     * 类别ID
+     */
     private Integer id;
+    /**
+     * 类别名
+     */
+
     private String name;
+
+    public BookType() {
+    }
+
+    public BookType(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

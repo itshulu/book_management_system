@@ -35,13 +35,11 @@ public class BookTypeController {
     @DeleteMapping("/delType")
     public RestModel<BookType> removeType(Integer id){
         bookTypeService.removeType(id);
-        return new RestModel<BookType>(200,"删除成功",null);
+        return new RestModel<>(200,"删除成功",null);
     }
     @PutMapping("/upType")
     public RestModel<BookType> modifyType(Integer id,String name){
-        BookType bookType = new BookType();
-        bookType.setId(id);
-        bookType.setName(name);
+        BookType bookType = new BookType(id,name);
         bookTypeService.modifyType(bookType);
         return new RestModel<>(200,"修改成功",bookType);
     }

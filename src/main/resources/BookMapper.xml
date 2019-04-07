@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sl.dao.BookDao">
+    <!--    <resultMap id="BookResult" type="book">
+            <id column="id" property="id" javaType="Integer" jdbcType="BIGINT"/>
+            <result property="name" column="name"/>
+            <result property="typeId" column="typeId"/>
+            <result property="isbn" column="isbn"/>
+            <result property="author" column="author"/>
+            <result property="press" column="press"/>
+            <result property="num" column="num"/>
+        </resultMap>-->
+
+
+    <select id="findBooks" resultType="com.sl.dao.BookDao">
+
+    </select>
+    <insert id="saveBook" parameterType="com.sl.entity.Book" useGeneratedKeys="true" keyProperty="id">
+INSERT INTO book (`name`,`typeId`,`isbn`,`author`,`press`,`num`) VALUES (#{name},#{typeId} ,#{isbn} ,#{author} ,#{press} ,#{num} )
+    </insert>
+    <update id="modifyBook" parameterType="com.sl.entity.Book">
+        UPDATE book
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="typeId != null">typeId =#{typeId},</if>
+            <if test="isbn != null">isbn=#{isbn},</if>
+            <if test="author != null">author=#{author},</if>
+            <if test="press != null">press=#{press},</if>
+            <if test="num != null">num=#{num}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+    <delete id="removeBook">
+DELETE FROM book WHERE id=#{id}
+    </delete>
+    <select id="fuzzyQueryBook" resultType="com.sl.entity.Book">
+
+    </select>
+    <select id="findOneBook" resultType="com.sl.entity.Book">
+SELECT * FROM book WHERE id=#{id}
+    </select>
+</mapper>
