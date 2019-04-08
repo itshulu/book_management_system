@@ -10,9 +10,10 @@ import java.util.List;
 public interface BookDao {
     /**
      * 查询所有
+     * @param typeId 类型id
      * @return
      */
-    List<Book> findBooks();
+    List<Book> findBooks(Integer typeId);
 
     /**
      *添加书本
@@ -36,7 +37,7 @@ public interface BookDao {
      * 模糊搜索图书名
      * @return
      */
-    List<Book> fuzzyQueryBook();
+    List<Book> fuzzyQueryBook(String search,Integer typeId);
 
     /**
      *根据id查询书籍具体信息

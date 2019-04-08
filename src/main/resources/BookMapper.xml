@@ -14,8 +14,9 @@
         </resultMap>-->
 
 
-    <select id="findBooks" resultType="com.sl.dao.BookDao">
-
+    <select id="findBooks" resultType="com.sl.entity.Book">
+        SELECT * FROM book
+        <if test="_parameter != -1 and _parameter != null">WHERE typeId=#{typeId}</if>
     </select>
     <insert id="saveBook" parameterType="com.sl.entity.Book" useGeneratedKeys="true" keyProperty="id">
 INSERT INTO book (`name`,`typeId`,`isbn`,`author`,`press`,`num`) VALUES (#{name},#{typeId} ,#{isbn} ,#{author} ,#{press} ,#{num} )
@@ -33,12 +34,14 @@ INSERT INTO book (`name`,`typeId`,`isbn`,`author`,`press`,`num`) VALUES (#{name}
         WHERE id=#{id}
     </update>
     <delete id="removeBook">
-DELETE FROM book WHERE id=#{id}
+        DELETE FROM book WHERE id=#{id}
     </delete>
     <select id="fuzzyQueryBook" resultType="com.sl.entity.Book">
-
+        <bind name="pattern" value="'%' + _parameter.arg0 + '%'" />
+        SELECT * FROM book WHERE name LIKE '${pattern}'
+        <if test="_parameter.arg1 != -1 and _parameter.arg1 != null">AND typeId=#{_parameter.arg1}</if>
     </select>
     <select id="findOneBook" resultType="com.sl.entity.Book">
-SELECT * FROM book WHERE id=#{id}
+        SELECT * FROM book WHERE id=#{id}
     </select>
 </mapper>
