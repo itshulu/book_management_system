@@ -45,4 +45,29 @@ public interface BookDao {
      * @return 返回书籍对象
      */
     Book findOneBook(Integer id);
+
+    /**
+     * 添加图书时已存在图书信息，添加数量即可
+     * @param book
+     */
+    void modifyBookNum(Book book);
+    /**
+     *根据id查询书籍编码具体信息
+     * @param isbn 书籍ISBN
+     * @return 返回书籍对象
+     */
+    Book findOneBookByIsbn(String isbn);
+
+    /**
+     * 借阅图书时已存在图书信息，减少数量即可
+     * @param book 借阅的书籍信息
+     * @return 返回书籍信息
+     */
+    void modifyBookReduceNum(Book book);
+    /**
+     * 归还图书时已存在图书信息，增加数量即可
+     * @param book 借阅的书籍信息
+     * @return 返回书籍信息
+     */
+    void modifyBookAddNum(Book book);
 }

@@ -37,4 +37,16 @@ public interface BookService {
      * @return
      */
     PageBean<Book> fuzzyQueryBook(String search,Integer size,Integer page,Integer typeId);
+    /**
+     * 借阅图书时已存在图书信息，减少数量即可
+     * @param book 借阅的书籍信息
+     * @return 返回书籍信息
+     */
+    void modifyBookReduceNum(Book book);
+    /**
+     * 归还图书时已存在图书信息，增加数量即可
+     * @param book 借阅的书籍信息
+     * @return 返回书籍信息
+     */
+    void modifyBookAddNum(Book book);
 }

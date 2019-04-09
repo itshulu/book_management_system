@@ -2,6 +2,9 @@ package com.sl.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author ShuLu
+ */
 public class Book implements Serializable {
     /**
      * 书ID

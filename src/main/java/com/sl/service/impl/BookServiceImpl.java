@@ -22,7 +22,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void saveBook(Book book) {
-        bookDao.saveBook(book);
+        Book oneBook = bookDao.findOneBookByIsbn(book.getIsbn());
+        if (oneBook!=null){
+            bookDao.modifyBookNum(book);
+        }else {
+            bookDao.saveBook(book);
+        }
+
     }
 
     @Override
@@ -53,4 +59,16 @@ public class BookServiceImpl implements BookService {
         PageBean<Book> pageBean = new PageBean<>(bookDao.fuzzyQueryBook(search, typeId));
         return pageBean;
     }
+
+    @Override
+    public void modifyBookReduceNum(Book book) {
+        bookDao.modifyBookReduceNum(book);
+    }
+
+    @Override
+    public void modifyBookAddNum(Book book) {
+        bookDao.modifyBookAddNum(book);
+    }
+
+
 }

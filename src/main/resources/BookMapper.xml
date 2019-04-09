@@ -44,4 +44,16 @@ INSERT INTO book (`name`,`typeId`,`isbn`,`author`,`press`,`num`) VALUES (#{name}
     <select id="findOneBook" resultType="com.sl.entity.Book">
         SELECT * FROM book WHERE id=#{id}
     </select>
+    <update id="modifyBookNum">
+UPDATE book SET num=num+#{num}  WHERE isbn=#{isbn}
+    </update>
+    <select id="findOneBookByIsbn" resultType="com.sl.entity.Book">
+SELECT * FROM book WHERE isbn=#{isbn}
+    </select>
+    <update id="modifyBookReduceNum" parameterType="com.sl.entity.Book">
+UPDATE book SET num=#{num}-1  WHERE id=#{id}
+    </update>
+    <update id="modifyBookAddNum">
+UPDATE book SET num=#{num}+1  WHERE id=#{id}
+    </update>
 </mapper>
