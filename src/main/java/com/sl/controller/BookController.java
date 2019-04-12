@@ -4,6 +4,7 @@ import com.sl.entity.Book;
 import com.sl.entity.PageBean;
 import com.sl.entity.RestModel;
 import com.sl.service.BookService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class BookController {
     }
 
     @PostMapping("/addBook")
+    @RequiresPermissions("A")
     public RestModel<Book> saveBook(String name, Integer typeId, String isbn, String author, String press, Integer num) {
         Book book = new Book(null, name, typeId, isbn, author, press, num);
         bookService.saveBook(book);
@@ -27,6 +29,7 @@ public class BookController {
     }
 
     @PutMapping("/upBook")
+    @RequiresPermissions("A")
     public RestModel<Book> modifyBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
         Book book = new Book(id, name, typeId, isbn, author, press, num);
         bookService.modifyBook(book);
@@ -34,6 +37,7 @@ public class BookController {
     }
 
     @DeleteMapping("/delBook")
+    @RequiresPermissions("A")
     public RestModel<Book> removeBook(Integer id) {
         bookService.removeBook(id);
         return new RestModel<>(200, "删除成功", null);

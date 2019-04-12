@@ -8,15 +8,17 @@ import java.io.Serializable;
 public class User implements Serializable {
     private Integer id;
     private String name;
-    private Integer password;
+    private String password;
+    private String percode;
 
     public User() {
     }
 
-    public User(Integer id, String name, Integer password) {
+    public User(Integer id, String name, String password, String percode) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.percode = percode;
     }
 
     public Integer getId() {
@@ -35,11 +37,19 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public Integer getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(Integer password) {
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPercode() {
+        return percode;
+    }
+
+    public void setPercode(String percode) {
+        this.percode = percode;
     }
 }

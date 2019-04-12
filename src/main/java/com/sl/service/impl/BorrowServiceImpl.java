@@ -3,7 +3,9 @@ package com.sl.service.impl;
 import com.sl.dao.BorrowDao;
 import com.sl.entity.Book;
 import com.sl.entity.Borrow;
+import com.sl.entity.User;
 import com.sl.service.BorrowService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +24,13 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public Book borrowBook(Integer id) {
-        return null;
+    public void borrowBook(Book book) {
+        borrowDao.borrowBook(book);
     }
 
     @Override
     public Book remandBook(Integer id) {
-        return null;
+        return borrowDao.remandBook(id);
     }
 
     @Override
@@ -38,6 +40,12 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     public List<Borrow> getUserBorrow() {
-        return null;
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
+        List<Borrow> userBorrow = borrowDao.getUserBorrow(user.getId());
+        return userBorrow;
+    }
+    @Override
+    public Book findOneBook(Integer id) {
+        return borrowDao.findOneBook(id);
     }
 }

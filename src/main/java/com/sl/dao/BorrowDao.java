@@ -11,10 +11,10 @@ import java.util.List;
 public interface BorrowDao {
     /**
      * 借阅书籍
-     * @param id 要借阅的图书ID
+     * @param book 要借阅的图书
      * @return 要借阅的书的信息
      */
-    Book borrowBook(Integer id);
+    Book borrowBook(Book book);
 
     /**
      * 归还图书
@@ -31,7 +31,14 @@ public interface BorrowDao {
 
     /**
      * 获取某个用户借阅信息
-     * @return 某个用户借阅信息
+     * @param id 用户id
+     * @return
      */
-    List<Borrow> getUserBorrow();
+    List<Borrow> getUserBorrow(Integer id);
+    /**
+     *根据id查询书籍具体信息
+     * @param id 书籍ID
+     * @return 返回书籍对象
+     */
+    Book findOneBook(Integer id);
 }

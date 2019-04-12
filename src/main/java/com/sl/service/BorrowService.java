@@ -11,10 +11,10 @@ import java.util.List;
 public interface BorrowService {
     /**
      * 借阅书籍
-     * @param id 要借阅的图书ID
+     * @param book 要借阅的图书
      * @return 要借阅的书的信息
      */
-    Book borrowBook(Integer id);
+    void borrowBook(Book book);
 
     /**
      * 归还图书
@@ -30,8 +30,13 @@ public interface BorrowService {
     List<Borrow> getBookBorrow(Integer id);
 
     /**
-     * 获取某个用户借阅信息
-     * @return 某个用户借阅信息
+     * 获取用户借阅书籍
+     * @return
      */
     List<Borrow> getUserBorrow();
+    /**
+     * @param id 书籍ID
+     * @return 返回书籍对象
+     */
+    Book findOneBook(Integer id);
 }
