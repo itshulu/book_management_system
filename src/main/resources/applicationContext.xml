@@ -105,7 +105,7 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /** = user
+                /register=anon
                 /** = authc
             </value>
         </property>

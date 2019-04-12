@@ -22,4 +22,11 @@ public interface UserService {
      * @return 用户信息
      */
     User getUserEntity(String username);
+
+    /**
+     * 添加用户
+     * @param name
+     * @param password
+     */
+    void saveUser(String name,String password);
 }

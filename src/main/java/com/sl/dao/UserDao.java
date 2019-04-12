@@ -22,4 +22,10 @@ public interface UserDao {
      * @return 用户信息
      */
     User getUserEntity(String username);
+
+    /**
+     * 添加用户 默认是添加普通用户
+     * @param user
+     */
+    void saveUser(User user);
 }

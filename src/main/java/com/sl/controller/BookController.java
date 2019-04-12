@@ -23,16 +23,15 @@ public class BookController {
     @PostMapping("/addBook")
     @RequiresPermissions("A")
     public RestModel<Book> saveBook(String name, Integer typeId, String isbn, String author, String press, Integer num) {
-        Book book = new Book(null, name, typeId, isbn, author, press, num);
-        bookService.saveBook(book);
+        Book book = bookService.saveBook(null, name, typeId, isbn, author, press, num);
         return new RestModel<>(200, "添加成功", book);
     }
 
     @PutMapping("/upBook")
     @RequiresPermissions("A")
     public RestModel<Book> modifyBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
-        Book book = new Book(id, name, typeId, isbn, author, press, num);
-        bookService.modifyBook(book);
+        bookService.modifyBook(id, name, typeId, isbn, author, press, num);
+        Book book =bookService.findOneBook(id);
         return new RestModel<>(200, "修改成功", book);
     }
 

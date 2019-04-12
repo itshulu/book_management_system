@@ -34,7 +34,7 @@ public class LoginController {
      */
     @RequestMapping("/login")
     public RestModel<String> login(HttpServletRequest request) {
-        User user = (User)  SecurityUtils.getSubject().getPrincipal();
+        User user = (User) SecurityUtils.getSubject().getPrincipal();
         if (user != null && user.getId() != null) {
             return new RestModel<>(200, "登陆成功", null);
         }
@@ -42,10 +42,10 @@ public class LoginController {
         String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
         if (exceptionClassName != null) {
             if (UnknownAccountException.class.getName().equals(exceptionClassName)) {
-                msg="账号不存在";
+                msg = "账号不存在";
             } else if (IncorrectCredentialsException.class.getName().equals(
                     exceptionClassName) || AuthenticationException.class.getName().equals(exceptionClassName)) {
-                msg= "用户名/密码错误";
+                msg = "用户名/密码错误";
             } else {
                 throw new RuntimeException(exceptionClassName);
             }
@@ -56,5 +56,11 @@ public class LoginController {
     @PostMapping("/overpower")
     public RestModel<String> overpower() {
         return new RestModel<>(402, "越权访问", null);
+    }
+
+    @PostMapping("/register")
+    public RestModel<String> register(String name, String password) {
+        userService.saveUser(name, password);
+        return new RestModel<>(200,"注册成功",null);
     }
 }

@@ -25,18 +25,20 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void saveBook(Book book) {
+    public Book saveBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
+        Book book = new Book(null, name, typeId, isbn, author, press, num);
         Book oneBook = bookDao.findOneBookByIsbn(book.getIsbn());
         if (oneBook != null) {
             bookDao.modifyBookNum(book);
         } else {
             bookDao.saveBook(book);
         }
-
+        return book;
     }
 
     @Override
-    public void modifyBook(Book book) {
+    public void modifyBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
+        Book book = new Book(id, name, typeId, isbn, author, press, num);
         bookDao.modifyBook(book);
     }
 

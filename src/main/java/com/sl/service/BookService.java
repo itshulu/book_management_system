@@ -9,14 +9,28 @@ import com.sl.exception.NullIdException;
  */
 public interface BookService {
     /**
-     * @param book
+     *
+     * @param id
+     * @param name
+     * @param typeId
+     * @param isbn
+     * @param author
+     * @param press
+     * @param num
      */
-    void  saveBook(Book book);
+    Book  saveBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num);
 
     /**
-     * @param book
+     *
+     * @param id
+     * @param name
+     * @param typeId
+     * @param isbn
+     * @param author
+     * @param press
+     * @param num 书数目
      */
-    void modifyBook(Book  book);
+    void modifyBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num);
 
     /**
      * @param id
