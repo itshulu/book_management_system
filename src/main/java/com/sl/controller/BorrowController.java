@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 public class BorrowController {
     private final BorrowService borrowService;
-    private final BookService  bookService;
+    private final BookService bookService;
 
     @Autowired
     public BorrowController(BorrowService borrowService, BookService bookService) {
@@ -28,28 +28,32 @@ public class BorrowController {
     }
 
     @GetMapping("/getBookBorrow")
-    public RestModel<List<Borrow>> getBookBorrow(Integer id){
+    public RestModel<List<Borrow>> getBookBorrow(Integer id) {
         List<Borrow> bookBorrow = borrowService.getBookBorrow(id);
-        return new RestModel<>(200,"查询成功",bookBorrow);
+        return new RestModel<>(200, "查询成功", bookBorrow);
     }
+
     @PostMapping("/borrow")
     @RequiresPermissions("U")
-    public RestModel<Book> borrowBook(Integer id){
-        bookService.modifyBookReduceNum(bookService.findOneBook(id));
+    public RestModel<Book> borrowBook(Integer id) {
+        Book book = bookService.findOneBook(id);
+        bookService.modifyBookReduceNum(book);
         Book oneBook = bookService.findOneBook(id);
-        return new RestModel<>(200,"借阅成功",oneBook);
+        return new RestModel<>(200, "借阅成功", oneBook);
     }
+
     @PostMapping("/remand")
     @RequiresPermissions("U")
-    public RestModel<Book> remandBook(Integer id){
+    public RestModel<Book> remandBook(Integer id) {
         bookService.modifyBookAddNum(bookService.findOneBook(id));
         Book oneBook = bookService.findOneBook(id);
-        return new RestModel<>(200,"归还成功",oneBook);
+        return new RestModel<>(200, "归还成功", oneBook);
     }
+
     @GetMapping("/getUserBorrow")
     @RequiresPermissions("U")
-    public RestModel<List<Borrow>> getUserBorrow(){
+    public RestModel<List<Borrow>> getUserBorrow() {
         List<Borrow> userBorrow = borrowService.getUserBorrow();
-        return new RestModel<>(200,"查找成功",userBorrow);
+        return new RestModel<>(200, "查找成功", userBorrow);
     }
 }

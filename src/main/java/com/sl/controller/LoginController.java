@@ -34,14 +34,12 @@ public class LoginController {
      */
     @RequestMapping("/login")
     public RestModel<String> login(HttpServletRequest request) {
-        Object principal = SecurityUtils.getSubject().getPrincipal();
-        User user = (User) principal;
+        User user = (User)  SecurityUtils.getSubject().getPrincipal();
         if (user != null && user.getId() != null) {
             return new RestModel<>(200, "登陆成功", null);
         }
         String msg = null;
         String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
-        System.out.println(exceptionClassName);
         if (exceptionClassName != null) {
             if (UnknownAccountException.class.getName().equals(exceptionClassName)) {
                 msg="账号不存在";
@@ -52,7 +50,7 @@ public class LoginController {
                 throw new RuntimeException(exceptionClassName);
             }
         }
-        return new RestModel<>(404, msg, null);
+        return new RestModel<>(401, msg, null);
     }
 
     @PostMapping("/overpower")

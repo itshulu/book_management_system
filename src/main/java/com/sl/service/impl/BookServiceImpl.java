@@ -4,8 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.sl.dao.BookDao;
 import com.sl.entity.Book;
 import com.sl.entity.PageBean;
+import com.sl.exception.BookNumNullException;
+import com.sl.exception.NullFindBookException;
+import com.sl.exception.NullIdException;
 import com.sl.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,9 +27,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public void saveBook(Book book) {
         Book oneBook = bookDao.findOneBookByIsbn(book.getIsbn());
-        if (oneBook!=null){
+        if (oneBook != null) {
             bookDao.modifyBookNum(book);
-        }else {
+        } else {
             bookDao.saveBook(book);
         }
 
@@ -38,12 +42,18 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void removeBook(Integer id) {
-        bookDao.removeBook(id);
+        if (id != null) {
+            bookDao.removeBook(id);
+        }
+        throw new NullIdException("未找到要删除的ID", HttpStatus.NOT_FOUND);
     }
 
     @Override
     public Book findOneBook(Integer id) {
-        return bookDao.findOneBook(id);
+        if (id != null) {
+            return bookDao.findOneBook(id);
+        }
+        throw new NullIdException("未找到要删除的ID", HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -62,11 +72,19 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void modifyBookReduceNum(Book book) {
+        if (book == null) {
+            throw new NullFindBookException("未找到借阅图书", HttpStatus.NOT_FOUND);
+        } else if (book.getNum() <= 0) {
+            throw new BookNumNullException("该书籍已借完！请借阅其它书籍！", HttpStatus.CONFLICT);
+        }
         bookDao.modifyBookReduceNum(book);
     }
 
     @Override
     public void modifyBookAddNum(Book book) {
+        if (book == null) {
+            throw new NullFindBookException("未找到要归还的图书，请重新输入", HttpStatus.NOT_FOUND);
+        }
         bookDao.modifyBookAddNum(book);
     }
 

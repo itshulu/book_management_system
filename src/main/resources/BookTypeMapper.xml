@@ -26,6 +26,9 @@ DELETE FROM book_type WHERE id=#{id}
         </set>
         WHERE id=#{id}
     </update>
+    <select id="findOne" resultType="com.sl.entity.BookType">
+SELECT * FROM book_type WHERE id=#{id}
+    </select>
 
 
 </mapper>

@@ -2,6 +2,7 @@ package com.sl.service;
 
 import com.sl.entity.Book;
 import com.sl.entity.PageBean;
+import com.sl.exception.NullIdException;
 
 /**
  * @author ShuLu
@@ -20,7 +21,7 @@ public interface BookService {
     /**
      * @param id
      */
-    void removeBook(Integer id);
+    void removeBook(Integer id) throws NullIdException;
     /**
      * @param id 书籍ID
      * @return 返回书籍对象

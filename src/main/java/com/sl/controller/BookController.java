@@ -45,6 +45,7 @@ public class BookController {
 
     @GetMapping("/getBook")
     public RestModel<Book> findOneBook(Integer id) {
+        Book book = bookService.findOneBook(id);
         return new RestModel<>(200, "查找成功", bookService.findOneBook(id));
     }
 
@@ -53,8 +54,9 @@ public class BookController {
         PageBean<Book> all = bookService.findAll(pageNo, pageSize, typeId);
         return new RestModel<>(200, "查询成功", all);
     }
+
     @GetMapping("/searchBook")
-    public RestModel<PageBean<Book>> fuzzyQueryBook(@RequestParam(defaultValue = "1", value = "pageNo") Integer pageNo, Integer pageSize,@RequestParam(value ="search" ) String search, @RequestParam(value = "typeId", defaultValue = "-1") Integer typeId){
+    public RestModel<PageBean<Book>> fuzzyQueryBook(@RequestParam(defaultValue = "1", value = "pageNo") Integer pageNo, Integer pageSize, @RequestParam(value = "search") String search, @RequestParam(value = "typeId", defaultValue = "-1") Integer typeId) {
         PageBean<Book> pageBean = bookService.fuzzyQueryBook(search, pageNo, pageSize, typeId);
         return new RestModel<>(200, "查询成功", pageBean);
     }

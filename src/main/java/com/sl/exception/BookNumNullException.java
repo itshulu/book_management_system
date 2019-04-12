@@ -5,9 +5,9 @@ import org.springframework.http.HttpStatus;
 /**
  * @author ShuLu
  */
-public class NotNameException extends BaseException {
+public class BookNumNullException  extends BaseException {
 
-    public NotNameException(String msg, HttpStatus code) {
+    public BookNumNullException(String msg, HttpStatus code) {
         super(msg, code);
     }
 }

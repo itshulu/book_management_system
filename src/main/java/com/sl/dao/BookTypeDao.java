@@ -32,4 +32,11 @@ public interface BookTypeDao {
      * @param bookType 类别对象
      */
     void modifyType(BookType bookType);
+
+    /**
+     * 擦护照单个图书类型
+     * @param id 类型id
+     * @return
+     */
+    BookType findOne(Integer id);
 }

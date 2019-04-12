@@ -23,7 +23,7 @@ public class BookTypeController {
 
     @GetMapping("/allType")
     public RestModel<List<BookType>> getAll() {
-        return new RestModel<>(200,"查询成功",bookTypeService.getAll());
+        return new RestModel<>(200, "查询成功", bookTypeService.getAll());
     }
 
     @PostMapping("/addType")
@@ -32,19 +32,21 @@ public class BookTypeController {
         BookType bookType = new BookType();
         bookType.setName(name);
         bookTypeService.saveType(bookType);
-        return new RestModel<>(200,"添加成功",bookType);
+        return new RestModel<>(200, "添加成功", bookType);
     }
+
     @DeleteMapping("/delType")
     @RequiresPermissions("A")
-    public RestModel<BookType> removeType(Integer id){
+    public RestModel<BookType> removeType(Integer id) {
         bookTypeService.removeType(id);
-        return new RestModel<>(200,"删除成功",null);
+        return new RestModel<>(200, "删除成功", null);
     }
+
     @PutMapping("/upType")
     @RequiresPermissions("A")
-    public RestModel<BookType> modifyType(Integer id,String name){
-        BookType bookType = new BookType(id,name);
+    public RestModel<BookType> modifyType(Integer id, String name) {
+        BookType bookType = new BookType(id, name);
         bookTypeService.modifyType(bookType);
-        return new RestModel<>(200,"修改成功",bookType);
+        return new RestModel<>(200, "修改成功", bookType);
     }
 }
