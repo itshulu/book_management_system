@@ -44,7 +44,6 @@ public class BookController {
 
     @GetMapping("/getBook")
     public RestModel<Book> findOneBook(Integer id) {
-        Book book = bookService.findOneBook(id);
         return new RestModel<>(200, "查找成功", bookService.findOneBook(id));
     }
 
