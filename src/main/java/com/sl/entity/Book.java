@@ -19,6 +19,10 @@ public class Book implements Serializable {
      */
     private Integer typeId;
     /**
+     * 类别名
+     */
+    private String typeName;
+    /**
      * ISBN编码
      */
     private String isbn;
@@ -38,10 +42,11 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
+    public Book(Integer id, String name, Integer typeId, String typeName, String isbn, String author, String press, Integer num) {
         this.id = id;
         this.name = name;
         this.typeId = typeId;
+        this.typeName = typeName;
         this.isbn = isbn;
         this.author = author;
         this.press = press;
@@ -70,6 +75,14 @@ public class Book implements Serializable {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getIsbn() {

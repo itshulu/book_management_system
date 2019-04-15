@@ -13,24 +13,26 @@ public interface BookService {
      * @param id
      * @param name
      * @param typeId
+     * @param typeName
+     * @param isbn
+     * @param author
+     * @param press
+     * @param num
+     * @return
+     */
+    Book  saveBook(Integer id, String name, Integer typeId,String typeName, String isbn, String author, String press, Integer num);
+
+    /**
+     * @param id
+     * @param name
+     * @param typeId
+     * @param typeName
      * @param isbn
      * @param author
      * @param press
      * @param num
      */
-    Book  saveBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num);
-
-    /**
-     *
-     * @param id
-     * @param name
-     * @param typeId
-     * @param isbn
-     * @param author
-     * @param press
-     * @param num 书数目
-     */
-    void modifyBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num);
+    void modifyBook(Integer id, String name, Integer typeId,String typeName, String isbn, String author, String press, Integer num);
 
     /**
      * @param id
