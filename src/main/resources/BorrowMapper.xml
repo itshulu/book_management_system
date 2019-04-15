@@ -6,7 +6,7 @@
     <select id="getBookBorrow" resultType="com.sl.entity.Borrow">
 SELECT * FROM borrow WHERE id=#{id}
     </select>
-    <select id="getUserBorrow" resultType="com.sl.entity.Borrow">
+    <select id="getUserBorrow" resultType="com.sl.pojo.BorrowPojo">
 SELECT * FROM borrow WHERE userId=#{id}
     </select>
 </mapper>

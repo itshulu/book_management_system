@@ -3,6 +3,7 @@ package com.sl.controller;
 import com.sl.entity.Book;
 import com.sl.entity.Borrow;
 import com.sl.entity.RestModel;
+import com.sl.pojo.BorrowPojo;
 import com.sl.service.BookService;
 import com.sl.service.BorrowService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -28,6 +29,7 @@ public class BorrowController {
     }
 
     @GetMapping("/getBookBorrow")
+    @RequiresPermissions("A")
     public RestModel<List<Borrow>> getBookBorrow(Integer id) {
         List<Borrow> bookBorrow = borrowService.getBookBorrow(id);
         return new RestModel<>(200, "查询成功", bookBorrow);
@@ -52,8 +54,8 @@ public class BorrowController {
 
     @GetMapping("/getUserBorrow")
     @RequiresPermissions("U")
-    public RestModel<List<Borrow>> getUserBorrow() {
-        List<Borrow> userBorrow = borrowService.getUserBorrow();
+    public RestModel<List<BorrowPojo>> getUserBorrow() {
+        List<BorrowPojo> userBorrow = borrowService.getUserBorrow();
         return new RestModel<>(200, "查找成功", userBorrow);
     }
 }

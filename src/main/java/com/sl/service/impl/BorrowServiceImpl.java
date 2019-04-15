@@ -3,6 +3,7 @@ package com.sl.service.impl;
 import com.sl.dao.BorrowDao;
 import com.sl.entity.Borrow;
 import com.sl.entity.User;
+import com.sl.pojo.BorrowPojo;
 import com.sl.service.BorrowService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public List<Borrow> getUserBorrow() {
+    public List<BorrowPojo> getUserBorrow() {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
-        List<Borrow> userBorrow = borrowDao.getUserBorrow(user.getId());
+        List<BorrowPojo> userBorrow = borrowDao.getUserBorrow(user.getId());
         return userBorrow;
     }
 

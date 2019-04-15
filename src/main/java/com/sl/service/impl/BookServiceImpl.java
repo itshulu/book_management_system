@@ -44,10 +44,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void removeBook(Integer id) {
-        if (id != null) {
-            bookDao.removeBook(id);
+        if (id == null) {
+            throw new NullIdException("未找到要删除的ID", HttpStatus.NOT_FOUND);
         }
-        throw new NullIdException("未找到要删除的ID", HttpStatus.NOT_FOUND);
+        bookDao.removeBook(id);
     }
 
     @Override

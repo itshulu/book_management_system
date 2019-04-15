@@ -1,9 +1,11 @@
 package com.sl.pojo;
 
+import java.io.Serializable;
+
 /**
  * @author ShuLu
  */
-public class UserPojo {
+public class UserPojo implements Serializable {
     private Integer id;
     private String name;
 

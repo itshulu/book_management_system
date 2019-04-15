@@ -26,6 +26,7 @@ INSERT INTO book (`name`,`typeId`,`isbn`,`author`,`press`,`num`) VALUES (#{name}
         <set>
             <if test="name != null">name=#{name},</if>
             <if test="typeId != null">typeId =#{typeId},</if>
+            <if test="typeName != null">typeName =#{typeName} ,</if>
             <if test="isbn != null">isbn=#{isbn},</if>
             <if test="author != null">author=#{author},</if>
             <if test="press != null">press=#{press},</if>

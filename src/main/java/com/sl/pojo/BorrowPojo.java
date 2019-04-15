@@ -1,4 +1,4 @@
-package com.sl.entity;
+package com.sl.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,24 +9,20 @@ import java.util.Date;
 /**
  * @author ShuLu
  */
-public class Borrow implements Serializable {
+public class BorrowPojo implements Serializable {
     private Integer id;
     private Integer bookId;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Date time;
-    private Integer userId;
-    private String userName;
 
-    public Borrow() {
+    public BorrowPojo() {
     }
 
-    public Borrow(Integer id, Integer bookId, Date time, Integer userId, String userName) {
+    public BorrowPojo(Integer id, Integer bookId, Date time) {
         this.id = id;
         this.bookId = bookId;
         this.time = time;
-        this.userId = userId;
-        this.userName = userName;
     }
 
     public Integer getId() {
@@ -51,21 +47,5 @@ public class Borrow implements Serializable {
 
     public void setTime(Date time) {
         this.time = time;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 }

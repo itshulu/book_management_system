@@ -27,7 +27,7 @@ public class BookController {
         return new RestModel<>(200, " 添加成功", book);
     }
 
-    @PutMapping("/upBook")
+    @PostMapping("/upBook")
     @RequiresPermissions("A")
     public RestModel<Book> modifyBook(Integer id, String name, Integer typeId, String typeName,String isbn, String author, String press, Integer num) {
         bookService.modifyBook(id, name, typeId,typeName, isbn, author, press, num);
@@ -35,9 +35,10 @@ public class BookController {
         return new RestModel<>(200, "修改成功", book);
     }
 
-    @DeleteMapping("/delBook")
+    @PostMapping("/delBook")
     @RequiresPermissions("A")
     public RestModel<Book> removeBook(Integer id) {
+        System.out.println(id);
         bookService.removeBook(id);
         return new RestModel<>(200, "删除成功", null);
     }
@@ -48,7 +49,7 @@ public class BookController {
     }
 
     @GetMapping("/getAllBook")
-    public RestModel<PageBean<Book>> findAll(@RequestParam(defaultValue = "1", value = "pageNo") Integer pageNo, Integer pageSize, @RequestParam(value = "typeId", defaultValue = "-1") Integer typeId) {
+    public RestModel<PageBean<Book>> findAll(@RequestParam(defaultValue = "1", value = "pageNo") Integer pageNo,@RequestParam(value = "size", defaultValue = "10") Integer pageSize, @RequestParam(value = "typeId", defaultValue = "-1") Integer typeId) {
         PageBean<Book> all = bookService.findAll(pageNo, pageSize, typeId);
         return new RestModel<>(200, "查询成功", all);
     }

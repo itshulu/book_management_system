@@ -1,6 +1,7 @@
 package com.sl.service;
 
 import com.sl.entity.Borrow;
+import com.sl.pojo.BorrowPojo;
 
 import java.util.List;
 
@@ -22,6 +23,6 @@ public interface BorrowService {
      * 获取用户借阅书籍
      * @return
      */
-    List<Borrow> getUserBorrow();
+    List<BorrowPojo> getUserBorrow();
 
 }

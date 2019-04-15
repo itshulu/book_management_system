@@ -35,17 +35,19 @@ public class BookTypeController {
         return new RestModel<>(200, "添加成功", bookType);
     }
 
-    @DeleteMapping("/delType")
+    @PostMapping("/delType")
     @RequiresPermissions("A")
     public RestModel<BookType> removeType(Integer id) {
         bookTypeService.removeType(id);
         return new RestModel<>(200, "删除成功", null);
     }
 
-    @PutMapping("/upType")
+    @PostMapping("/upType")
     @RequiresPermissions("A")
     public RestModel<BookType> modifyType(Integer id, String name) {
         BookType bookType = new BookType(id, name);
+        System.out.println(id);
+        System.out.println(name);
         bookTypeService.modifyType(bookType);
         return new RestModel<>(200, "修改成功", bookType);
     }

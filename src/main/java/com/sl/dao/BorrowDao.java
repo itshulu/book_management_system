@@ -1,6 +1,7 @@
 package com.sl.dao;
 
 import com.sl.entity.Borrow;
+import com.sl.pojo.BorrowPojo;
 
 import java.util.List;
 
@@ -21,6 +22,6 @@ public interface BorrowDao {
      * @param id 用户id
      * @return
      */
-    List<Borrow> getUserBorrow(Integer id);
+    List<BorrowPojo> getUserBorrow(Integer id);
 
 }

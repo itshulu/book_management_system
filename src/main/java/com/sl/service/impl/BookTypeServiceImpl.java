@@ -49,9 +49,9 @@ public class BookTypeServiceImpl implements BookTypeService {
 
     @Override
     public void modifyType(BookType bookType) {
-        if (bookType.getName()!=null){
-            bookTypeDao.modifyType(bookType);
+        if (bookType.getName()==null){
+            throw new NotNameException("修改类型名为空",HttpStatus.NOT_ACCEPTABLE);
         }
-        throw new NotNameException("修改类型名为空",HttpStatus.NOT_ACCEPTABLE);
+        bookTypeDao.modifyType(bookType);
     }
 }
