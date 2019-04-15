@@ -1,11 +1,6 @@
-package com.sl.entity;
+package com.sl.pojo;
 
-import java.io.Serializable;
-
-/**
- * @author ShuLu
- */
-public class Book implements Serializable {
+public class BookPojo {
     /**
      * 书ID
      */
@@ -18,6 +13,10 @@ public class Book implements Serializable {
      * 类别ID
      */
     private Integer typeId;
+    /**
+     * 类别名
+     */
+    private String typeName;
     /**
      * ISBN编码
      */
@@ -35,13 +34,14 @@ public class Book implements Serializable {
      */
     private Integer num;
 
-    public Book() {
+    public BookPojo() {
     }
 
-    public Book(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
+    public BookPojo(Integer id, String name, Integer typeId, String typeName, String isbn, String author, String press, Integer num) {
         this.id = id;
         this.name = name;
         this.typeId = typeId;
+        this.typeName = typeName;
         this.isbn = isbn;
         this.author = author;
         this.press = press;
@@ -70,6 +70,14 @@ public class Book implements Serializable {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getIsbn() {
@@ -102,5 +110,19 @@ public class Book implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    @Override
+    public String toString() {
+        return "BookPojo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", typeId=" + typeId +
+                ", typeName='" + typeName + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", author='" + author + '\'' +
+                ", press='" + press + '\'' +
+                ", num=" + num +
+                '}';
     }
 }

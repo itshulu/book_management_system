@@ -1,8 +1,8 @@
 package com.sl.controller;
 
-import com.sl.entity.Book;
 import com.sl.entity.Borrow;
 import com.sl.entity.RestModel;
+import com.sl.pojo.BookPojo;
 import com.sl.pojo.BorrowPojo;
 import com.sl.service.BookService;
 import com.sl.service.BorrowService;
@@ -37,18 +37,17 @@ public class BorrowController {
 
     @PostMapping("/borrow")
     @RequiresPermissions("U")
-    public RestModel<Book> borrowBook(Integer id) {
-        Book book = bookService.findOneBook(id);
-        bookService.modifyBookReduceNum(book);
-        Book oneBook = bookService.findOneBook(id);
+    public RestModel<BookPojo> borrowBook(Integer id) {
+        bookService.modifyBookReduceNum(id);
+        BookPojo oneBook = bookService.findOneBook(id);
         return new RestModel<>(200, "借阅成功", oneBook);
     }
 
     @PostMapping("/remand")
     @RequiresPermissions("U")
-    public RestModel<Book> remandBook(Integer id) {
-        bookService.modifyBookAddNum(bookService.findOneBook(id));
-        Book oneBook = bookService.findOneBook(id);
+    public RestModel<BookPojo> remandBook(Integer id) {
+        bookService.modifyBookAddNum(id);
+        BookPojo oneBook = bookService.findOneBook(id);
         return new RestModel<>(200, "归还成功", oneBook);
     }
 

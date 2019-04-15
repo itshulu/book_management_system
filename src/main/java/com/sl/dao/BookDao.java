@@ -1,6 +1,7 @@
 package com.sl.dao;
 
 import com.sl.entity.Book;
+import com.sl.pojo.BookPojo;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface BookDao {
      * @param typeId 类型id
      * @return
      */
-    List<Book> findBooks(Integer typeId);
+    List<BookPojo> findBooks(Integer typeId);
 
     /**
      *添加书本
@@ -37,14 +38,14 @@ public interface BookDao {
      * 模糊搜索图书名
      * @return
      */
-    List<Book> fuzzyQueryBook(String search,Integer typeId);
+    List<BookPojo> fuzzyQueryBook(String search,Integer typeId);
 
     /**
      *根据id查询书籍具体信息
      * @param id 书籍ID
      * @return 返回书籍对象
      */
-    Book findOneBook(Integer id);
+    BookPojo findOneBook(Integer id);
 
     /**
      * 添加图书时已存在图书信息，添加数量即可
@@ -70,4 +71,11 @@ public interface BookDao {
      * @return 返回书籍信息
      */
     void modifyBookAddNum(Book book);
+
+    /**
+     * 根据id查找book
+     * @param id
+     * @return
+     */
+    Book findBook(Integer id);
 }

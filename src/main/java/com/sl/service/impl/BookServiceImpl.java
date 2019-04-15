@@ -7,6 +7,7 @@ import com.sl.entity.PageBean;
 import com.sl.exception.BookNumNullException;
 import com.sl.exception.NullFindBookException;
 import com.sl.exception.NullIdException;
+import com.sl.pojo.BookPojo;
 import com.sl.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book saveBook(Integer id, String name, Integer typeId,String typeName, String isbn, String author, String press, Integer num) {
-        Book book = new Book(null, name, typeId,  typeName,isbn, author, press, num);
+    public Book saveBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
+        Book book = new Book(null, name, typeId,isbn, author, press, num);
         Book oneBook = bookDao.findOneBookByIsbn(book.getIsbn());
         if (oneBook != null) {
             bookDao.modifyBookNum(book);
@@ -37,8 +38,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void modifyBook(Integer id, String name, Integer typeId,String typeName, String isbn, String author, String press, Integer num) {
-        Book book = new Book(id, name, typeId, typeName, isbn, author, press, num);
+    public void modifyBook(Integer id, String name, Integer typeId, String isbn, String author, String press, Integer num) {
+        Book book = new Book(id, name, typeId, isbn, author, press, num);
         bookDao.modifyBook(book);
     }
 
@@ -51,29 +52,30 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book findOneBook(Integer id) {
+    public BookPojo findOneBook(Integer id) {
         if (id != null) {
             return bookDao.findOneBook(id);
         }
-        throw new NullIdException("未找到要删除的ID", HttpStatus.NOT_FOUND);
+        throw new NullIdException("未找到指定图书", HttpStatus.NOT_FOUND);
     }
 
     @Override
-    public PageBean<Book> findAll(Integer pageNo, Integer pageSize, Integer typeId) {
+    public PageBean<BookPojo> findAll(Integer pageNo, Integer pageSize, Integer typeId) {
         PageHelper.startPage(pageNo, pageSize);
-        PageBean<Book> pageBean = new PageBean<>(bookDao.findBooks(typeId));
+        PageBean<BookPojo> pageBean = new PageBean<>(bookDao.findBooks(typeId));
         return pageBean;
     }
 
     @Override
-    public PageBean<Book> fuzzyQueryBook(String search, Integer page, Integer size, Integer typeId) {
+    public PageBean<BookPojo> fuzzyQueryBook(String search, Integer page, Integer size, Integer typeId) {
         PageHelper.startPage(page, size);
-        PageBean<Book> pageBean = new PageBean<>(bookDao.fuzzyQueryBook(search, typeId));
+        PageBean<BookPojo> pageBean = new PageBean<>(bookDao.fuzzyQueryBook(search, typeId));
         return pageBean;
     }
 
     @Override
-    public void modifyBookReduceNum(Book book) {
+    public void modifyBookReduceNum(Integer id) {
+        Book book = bookDao.findBook(id);
         if (book == null) {
             throw new NullFindBookException("未找到借阅图书", HttpStatus.NOT_FOUND);
         } else if (book.getNum() <= 0) {
@@ -83,7 +85,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void modifyBookAddNum(Book book) {
+    public void modifyBookAddNum(Integer id) {
+        Book book = bookDao.findBook(id);
         if (book == null) {
             throw new NullFindBookException("未找到要归还的图书，请重新输入", HttpStatus.NOT_FOUND);
         }
