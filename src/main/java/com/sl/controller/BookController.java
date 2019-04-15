@@ -53,7 +53,7 @@ public class BookController {
     }
 
     @GetMapping("/getAllBook")
-    public RestModel<PageBean<BookPojo>> findAll(@RequestParam(defaultValue = "1", value = "page") Integer pageNo, @RequestParam(value = "size", defaultValue = "10") Integer pageSize, @RequestParam(value = "typeId", defaultValue = "-1") Integer typeId) {
+    public RestModel<PageBean<BookPojo>> findAll(@RequestParam(defaultValue = "1", value = "page") Integer pageNo, @RequestParam(value = "size", defaultValue = "10") Integer pageSize, @RequestParam(value = "type", defaultValue = "-1") Integer typeId) {
         PageBean<BookPojo> all = bookService.findAll(pageNo, pageSize, typeId);
         return new RestModel<>(200, "查询成功", all);
     }
