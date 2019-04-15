@@ -36,7 +36,7 @@ public class LoginController {
         if (user != null && user.getId() != null) {
             return new RestModel<>(200, "登陆成功", null);
         }
-        String msg = null;
+        String msg = "请先登陆";
         String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
         if (exceptionClassName != null) {
             if (UnknownAccountException.class.getName().equals(exceptionClassName)) {

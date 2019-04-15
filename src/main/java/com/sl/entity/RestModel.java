@@ -23,7 +23,7 @@ public class RestModel<T> implements Serializable {
         this.code = code;
         this.msg = msg;
         if (data==null){
-            this.data= (T)" ";
+            this.data= (T)"";
         }else {
             this.data = data;
         }
