@@ -105,6 +105,8 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+                /getBook=anon
+                /getAllBook=anon
                 /allType=anon
                 /searchBook=anon
                 /register=anon
