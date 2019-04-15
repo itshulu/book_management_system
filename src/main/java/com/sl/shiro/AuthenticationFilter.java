@@ -1,5 +1,7 @@
 package com.sl.shiro;
 
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.http.HttpMethod;
 
@@ -26,6 +28,13 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
             }
         }
         return super.isAccessAllowed(request, response, mappedValue);
+    }
+
+    @Override
+    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
+        HttpServletResponse resp = (HttpServletResponse) response;
+        resp.sendRedirect("/login");
+        return false;
     }
 
     private void allowCors(HttpServletResponse resp, HttpServletRequest req) {
