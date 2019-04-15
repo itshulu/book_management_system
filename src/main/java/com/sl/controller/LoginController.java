@@ -57,8 +57,8 @@ public class LoginController {
     }
 
     @PostMapping("/register")
-    public RestModel<String> register(String name, String password) {
-        userService.saveUser(name, password);
+    public RestModel<String> register(String username, String password) {
+        userService.saveUser(username, password);
         return new RestModel<>(200,"注册成功",null);
     }
 }
