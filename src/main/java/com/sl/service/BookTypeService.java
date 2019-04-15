@@ -29,9 +29,7 @@ public interface BookTypeService {
 
     /**
      * 修改类别名
-     * @param id 类别id
-     * @param name 新类别名
-     * @return
+     * @param bookType
      */
      void modifyType(BookType bookType);
 
