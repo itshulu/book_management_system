@@ -31,10 +31,10 @@ public class LoginController {
      * @return url
      */
     @RequestMapping("/login")
-    public RestModel<String> login(HttpServletRequest request) {
+    public RestModel<User> login(HttpServletRequest request) {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         if (user != null && user.getId() != null) {
-            return new RestModel<>(200, "登陆成功", null);
+            return new RestModel<>(200, "登陆成功", user);
         }
         String msg = "请先登陆";
         String exceptionClassName = (String) request.getAttribute("shiroLoginFailure");
